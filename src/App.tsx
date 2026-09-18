@@ -1,12 +1,15 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { open, save } from "@tauri-apps/plugin-dialog";
 import { readTextFile, writeTextFile } from "@tauri-apps/plugin-fs";
 import type { EditorState } from "@codemirror/state";
 import CodeEditor from "./CodeEditor";
 import TabBar from "./TabBar";
 import Sidebar from "./Sidebar";
-import { createDocState } from "./document";
+import ThemePanel from "./ThemePanel";
+import { applyThemeToStore, createDocState } from "./document";
 import { languageLabel } from "./languages";
+import { applyThemeVariables, builtinThemes, isThemeTokens, paperTheme } from "./theme";
+import type { ThemeTokens } from "./theme";
 import type { PaneId, Tab } from "./types";
 import "./App.css";
 
@@ -15,6 +18,8 @@ const FILE_FILTERS = [
   { name: "Code", extensions: ["js", "jsx", "ts", "tsx", "py", "rs", "html", "htm", "css"] },
   { name: "All files", extensions: ["*"] },
 ];
+
+const THEME_FILTERS = [{ name: "Inkwell theme", extensions: ["json"] }];
 
 function fileNameFromPath(path: string): string {
   return path.split(/[\\/]/).pop() ?? path;
@@ -29,6 +34,14 @@ function App() {
   const [rightActive, setRightActive] = useState<string | null>(null);
   const [splitOpen, setSplitOpen] = useState(false);
   const [focusedPane, setFocusedPane] = useState<PaneId>("left");
+  const [theme, setTheme] = useState<ThemeTokens>(paperTheme);
+  const [themeVersion, setThemeVersion] = useState(0);
+  const [themePanelOpen, setThemePanelOpen] = useState(false);
+  const [themeError, setThemeError] = useState<string | null>(null);
+
+  useEffect(() => {
+    applyThemeVariables(theme);
+  }, [theme]);
 
   function markDirty(id: string) {
     setDirty((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
@@ -57,7 +70,7 @@ function App() {
   }
 
   function addTab(tab: Tab, text: string) {
-    docStore.current.set(tab.id, createDocState(text, tab.path, () => markDirty(tab.id)));
+    docStore.current.set(tab.id, createDocState(text, tab.path, tab.id, docStore, theme, () => markDirty(tab.id)));
     setTabs((prev) => [...prev, tab]);
     focusTab(focusedPane, tab.id);
   }
@@ -146,6 +159,41 @@ function App() {
     }
   }
 
+  function handleThemeChange(next: ThemeTokens) {
+    setTheme(next);
+    applyThemeToStore(docStore, next);
+    setThemeVersion((v) => v + 1);
+    setThemeError(null);
+  }
+
+  async function handleExportTheme() {
+    const target = await save({
+      filters: THEME_FILTERS,
+      defaultPath: `${theme.name.toLowerCase().replace(/\s+/g, "-")}.json`,
+    });
+    if (!target) return;
+    await writeTextFile(target, JSON.stringify(theme, null, 2));
+  }
+
+  async function handleImportTheme() {
+    const selected = await open({ multiple: false, filters: THEME_FILTERS });
+    if (!selected || Array.isArray(selected)) return;
+
+    const text = await readTextFile(selected);
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(text);
+    } catch {
+      setThemeError("That file is not valid JSON.");
+      return;
+    }
+    if (!isThemeTokens(parsed)) {
+      setThemeError("That file is missing theme fields Inkwell expects.");
+      return;
+    }
+    handleThemeChange(parsed);
+  }
+
   const currentTab = activeTab();
 
   return (
@@ -159,6 +207,7 @@ function App() {
           <button onClick={handleSave}>Save</button>
           <button onClick={handleSaveAs}>Save As</button>
           <button onClick={toggleSplit}>{splitOpen ? "Close Split" : "Split"}</button>
+          <button onClick={() => setThemePanelOpen((v) => !v)}>Theme</button>
         </div>
       </header>
 
@@ -176,7 +225,7 @@ function App() {
               onClose={closeTab}
             />
             {leftActive ? (
-              <CodeEditor activeId={leftActive} store={docStore} />
+              <CodeEditor activeId={leftActive} store={docStore} themeVersion={themeVersion} />
             ) : (
               <div className="pane-empty">No file open</div>
             )}
@@ -193,13 +242,25 @@ function App() {
                 onClose={closeTab}
               />
               {rightActive ? (
-                <CodeEditor activeId={rightActive} store={docStore} />
+                <CodeEditor activeId={rightActive} store={docStore} themeVersion={themeVersion} />
               ) : (
                 <div className="pane-empty">No file open</div>
               )}
             </div>
           )}
         </div>
+
+        {themePanelOpen && (
+          <ThemePanel
+            theme={theme}
+            builtins={builtinThemes}
+            error={themeError}
+            onChange={handleThemeChange}
+            onImport={handleImportTheme}
+            onExport={handleExportTheme}
+            onClose={() => setThemePanelOpen(false)}
+          />
+        )}
       </div>
 
       <footer className="statusbar">

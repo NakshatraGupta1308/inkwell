@@ -1,4 +1,4 @@
-import { EditorState } from "@codemirror/state";
+import { Compartment, EditorState } from "@codemirror/state";
 import {
   EditorView,
   keymap,
@@ -8,31 +8,26 @@ import {
   drawSelection,
 } from "@codemirror/view";
 import { defaultKeymap, history, historyKeymap, indentWithTab } from "@codemirror/commands";
-import { bracketMatching, defaultHighlightStyle, indentOnInput, syntaxHighlighting } from "@codemirror/language";
+import { bracketMatching, indentOnInput, syntaxHighlighting } from "@codemirror/language";
+import type { RefObject } from "react";
 import { languageForPath } from "./languages";
+import { buildEditorTheme, buildHighlightStyle } from "./theme";
+import type { ThemeTokens } from "./theme";
 
-export const editorTheme = EditorView.theme({
-  "&": {
-    height: "100%",
-    backgroundColor: "var(--paper)",
-    color: "var(--ink)",
-  },
-  ".cm-content": {
-    fontFamily: "inherit",
-    fontSize: "1rem",
-    padding: "2rem clamp(1.25rem, 8vw, 12rem)",
-  },
-  ".cm-gutters": {
-    backgroundColor: "var(--paper)",
-    color: "var(--ink-soft)",
-    border: "none",
-  },
-  "&.cm-focused": {
-    outline: "none",
-  },
-});
+const themeCompartment = new Compartment();
 
-export function createDocState(text: string, path: string | null, onDocChanged: () => void): EditorState {
+function themeExtension(theme: ThemeTokens) {
+  return [buildEditorTheme(theme), syntaxHighlighting(buildHighlightStyle(theme), { fallback: true })];
+}
+
+export function createDocState(
+  text: string,
+  path: string | null,
+  id: string,
+  store: RefObject<Map<string, EditorState>>,
+  theme: ThemeTokens,
+  onDirty: () => void,
+): EditorState {
   return EditorState.create({
     doc: text,
     extensions: [
@@ -43,13 +38,23 @@ export function createDocState(text: string, path: string | null, onDocChanged: 
       history(),
       indentOnInput(),
       bracketMatching(),
-      syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
       keymap.of([...defaultKeymap, ...historyKeymap, indentWithTab]),
       languageForPath(path),
-      editorTheme,
+      themeCompartment.of(themeExtension(theme)),
       EditorView.updateListener.of((update) => {
-        if (update.docChanged) onDocChanged();
+        if (update.docChanged) {
+          store.current.set(id, update.state);
+          onDirty();
+        }
       }),
     ],
+  });
+}
+
+export function applyThemeToStore(store: RefObject<Map<string, EditorState>>, theme: ThemeTokens) {
+  const extension = themeExtension(theme);
+  store.current.forEach((state, id) => {
+    const nextState = state.update({ effects: themeCompartment.reconfigure(extension) }).state;
+    store.current.set(id, nextState);
   });
 }

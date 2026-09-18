@@ -5,9 +5,10 @@ import { EditorView } from "@codemirror/view";
 interface CodeEditorProps {
   activeId: string;
   store: React.RefObject<Map<string, EditorState>>;
+  themeVersion: number;
 }
 
-function CodeEditor({ activeId, store }: CodeEditorProps) {
+function CodeEditor({ activeId, store, themeVersion }: CodeEditorProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const viewRef = useRef<EditorView | null>(null);
 
@@ -31,7 +32,7 @@ function CodeEditor({ activeId, store }: CodeEditorProps) {
     if (view && state && view.state !== state) {
       view.setState(state);
     }
-  }, [activeId, store]);
+  }, [activeId, store, themeVersion]);
 
   return <div className="code-editor" ref={containerRef} />;
 }
