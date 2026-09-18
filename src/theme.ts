@@ -98,7 +98,274 @@ export const inkTheme: ThemeTokens = {
   },
 };
 
-export const builtinThemes: ThemeTokens[] = [paperTheme, inkTheme];
+export const sepiaTheme: ThemeTokens = {
+  name: "Sepia",
+  colors: {
+    background: "#f4ecd8",
+    foreground: "#4b3621",
+    accent: "#96591b",
+    border: "#e0d3b8",
+    mutedForeground: "#8a7a5c",
+    gutterBackground: "#f4ecd8",
+    gutterForeground: "#8a7a5c",
+    selection: "#e8d9b5",
+    activeLine: "#ece0c4",
+  },
+  fonts: {
+    ui: '"Iowan Old Style", "Palatino Linotype", Georgia, serif',
+    editor: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace',
+  },
+  syntax: {
+    comment: "#a08b62",
+    keyword: "#96591b",
+    string: "#5c7a4a",
+    number: "#b0752f",
+    function: "#6b4a2b",
+    variable: "#4b3621",
+    type: "#7a5a8a",
+    operator: "#8a7a5c",
+    tag: "#96591b",
+    property: "#6b4a2b",
+    heading: "#96591b",
+  },
+};
+
+export const slateTheme: ThemeTokens = {
+  name: "Slate",
+  colors: {
+    background: "#22262e",
+    foreground: "#d8dee9",
+    accent: "#6ec1c8",
+    border: "#3a4150",
+    mutedForeground: "#7d8797",
+    gutterBackground: "#22262e",
+    gutterForeground: "#5c6472",
+    selection: "#35495e",
+    activeLine: "#2b3038",
+  },
+  fonts: {
+    ui: '"Iowan Old Style", "Palatino Linotype", Georgia, serif',
+    editor: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace',
+  },
+  syntax: {
+    comment: "#6b7686",
+    keyword: "#d67f8a",
+    string: "#8fc19e",
+    number: "#6ec1c8",
+    function: "#7fa8d6",
+    variable: "#d8dee9",
+    type: "#b38fd6",
+    operator: "#7d8797",
+    tag: "#7fa8d6",
+    property: "#d67f8a",
+    heading: "#6ec1c8",
+  },
+};
+
+export const forestTheme: ThemeTokens = {
+  name: "Forest",
+  colors: {
+    background: "#1b241d",
+    foreground: "#dbe6dc",
+    accent: "#7fae6f",
+    border: "#2f3d31",
+    mutedForeground: "#7c9080",
+    gutterBackground: "#1b241d",
+    gutterForeground: "#57705e",
+    selection: "#2e4a34",
+    activeLine: "#223028",
+  },
+  fonts: {
+    ui: '"Iowan Old Style", "Palatino Linotype", Georgia, serif',
+    editor: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace',
+  },
+  syntax: {
+    comment: "#607a68",
+    keyword: "#c98a5b",
+    string: "#7fae6f",
+    number: "#d1b06a",
+    function: "#6fae9a",
+    variable: "#dbe6dc",
+    type: "#9bbf7f",
+    operator: "#7c9080",
+    tag: "#6fae9a",
+    property: "#c98a5b",
+    heading: "#7fae6f",
+  },
+};
+
+export const roseTheme: ThemeTokens = {
+  name: "Rose",
+  colors: {
+    background: "#fbeef0",
+    foreground: "#4a2530",
+    accent: "#a4425c",
+    border: "#f0d3da",
+    mutedForeground: "#9c7580",
+    gutterBackground: "#fbeef0",
+    gutterForeground: "#9c7580",
+    selection: "#f3d8de",
+    activeLine: "#f6e1e5",
+  },
+  fonts: {
+    ui: '"Iowan Old Style", "Palatino Linotype", Georgia, serif',
+    editor: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace',
+  },
+  syntax: {
+    comment: "#b08a92",
+    keyword: "#a4425c",
+    string: "#6a7a4a",
+    number: "#b0752f",
+    function: "#7a4a68",
+    variable: "#4a2530",
+    type: "#6a5a8a",
+    operator: "#9c7580",
+    tag: "#a4425c",
+    property: "#7a4a68",
+    heading: "#a4425c",
+  },
+};
+
+export const monoTheme: ThemeTokens = {
+  name: "Mono",
+  colors: {
+    background: "#f4f4f2",
+    foreground: "#1c1c1c",
+    accent: "#1c1c1c",
+    border: "#d8d8d4",
+    mutedForeground: "#6b6b68",
+    gutterBackground: "#f4f4f2",
+    gutterForeground: "#8a8a86",
+    selection: "#dcdcd8",
+    activeLine: "#eaeae6",
+  },
+  fonts: {
+    ui: '"Iowan Old Style", "Palatino Linotype", Georgia, serif',
+    editor: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace',
+  },
+  syntax: {
+    comment: "#8a8a86",
+    keyword: "#1c1c1c",
+    string: "#4a4a46",
+    number: "#3a3a36",
+    function: "#1c1c1c",
+    variable: "#2a2a26",
+    type: "#5a5a56",
+    operator: "#6b6b68",
+    tag: "#1c1c1c",
+    property: "#2a2a26",
+    heading: "#1c1c1c",
+  },
+};
+
+export const nightfallTheme: ThemeTokens = {
+  name: "Nightfall",
+  colors: {
+    background: "#1c1a2b",
+    foreground: "#e4dcf2",
+    accent: "#a685e0",
+    border: "#322d47",
+    mutedForeground: "#8c82a6",
+    gutterBackground: "#1c1a2b",
+    gutterForeground: "#5c5578",
+    selection: "#382f57",
+    activeLine: "#241f38",
+  },
+  fonts: {
+    ui: '"Iowan Old Style", "Palatino Linotype", Georgia, serif',
+    editor: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace',
+  },
+  syntax: {
+    comment: "#6b6285",
+    keyword: "#e0857f",
+    string: "#85c0a0",
+    number: "#e0c185",
+    function: "#85a6e0",
+    variable: "#e4dcf2",
+    type: "#a685e0",
+    operator: "#8c82a6",
+    tag: "#85a6e0",
+    property: "#e0857f",
+    heading: "#a685e0",
+  },
+};
+
+export const sandTheme: ThemeTokens = {
+  name: "Sand",
+  colors: {
+    background: "#f2e6d3",
+    foreground: "#3f3121",
+    accent: "#b06a2e",
+    border: "#e3d1ad",
+    mutedForeground: "#8a7a5e",
+    gutterBackground: "#f2e6d3",
+    gutterForeground: "#8a7a5e",
+    selection: "#e6d3ac",
+    activeLine: "#ecdcbc",
+  },
+  fonts: {
+    ui: '"Iowan Old Style", "Palatino Linotype", Georgia, serif',
+    editor: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace',
+  },
+  syntax: {
+    comment: "#9c8a68",
+    keyword: "#b06a2e",
+    string: "#55713f",
+    number: "#b0752f",
+    function: "#6a5230",
+    variable: "#3f3121",
+    type: "#7a5230",
+    operator: "#8a7a5e",
+    tag: "#b06a2e",
+    property: "#6a5230",
+    heading: "#b06a2e",
+  },
+};
+
+export const oceanTheme: ThemeTokens = {
+  name: "Ocean",
+  colors: {
+    background: "#16262b",
+    foreground: "#d6e8ea",
+    accent: "#4fb8c4",
+    border: "#23393f",
+    mutedForeground: "#6f909a",
+    gutterBackground: "#16262b",
+    gutterForeground: "#4a666e",
+    selection: "#1f4249",
+    activeLine: "#1c2f34",
+  },
+  fonts: {
+    ui: '"Iowan Old Style", "Palatino Linotype", Georgia, serif',
+    editor: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace',
+  },
+  syntax: {
+    comment: "#5c7a80",
+    keyword: "#e08f6b",
+    string: "#6fc2a0",
+    number: "#4fb8c4",
+    function: "#6fa8d6",
+    variable: "#d6e8ea",
+    type: "#9bb8d6",
+    operator: "#6f909a",
+    tag: "#6fa8d6",
+    property: "#e08f6b",
+    heading: "#4fb8c4",
+  },
+};
+
+export const builtinThemes: ThemeTokens[] = [
+  paperTheme,
+  inkTheme,
+  sepiaTheme,
+  slateTheme,
+  forestTheme,
+  roseTheme,
+  monoTheme,
+  nightfallTheme,
+  sandTheme,
+  oceanTheme,
+];
 
 export function applyThemeVariables(theme: ThemeTokens) {
   const root = document.documentElement.style;
