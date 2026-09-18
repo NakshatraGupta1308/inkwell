@@ -29,4 +29,8 @@ Review the draft release and publish it once the builds look right.
 
 ## Website
 
-The marketing and download page lives in `website/` as plain HTML and CSS. Deploy it by pointing a Vercel or Netlify project at that folder; no build step is required.
+The marketing and download page lives in `website/` as plain HTML and CSS, no build step required. It deploys automatically to GitHub Pages on every push to `main` that touches `website/`, via `.github/workflows/pages.yml`.
+
+This needs one one-time setting, since a repository does not accept GitHub Actions Pages deployments until it is told to: in the repository's Settings, under Pages, set "Build and deployment" > Source to "GitHub Actions". After that the workflow runs on its own and the site is live at `https://nakshatragupta1308.github.io/inkwell/`.
+
+It can also be deployed to Vercel or Netlify instead, by pointing a project at the `website/` folder; nothing in the site depends on GitHub Pages specifically.
