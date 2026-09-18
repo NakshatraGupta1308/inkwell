@@ -25,7 +25,9 @@ git tag v0.1.0
 git push origin v0.1.0
 ```
 
-Review the draft release and publish it once the builds look right.
+It can also be run without pushing a tag at all, from the Actions tab: open the Release workflow, click "Run workflow," and give it the version tag to use. GitHub creates that tag automatically as part of creating the release, pointing at whichever commit the workflow ran on.
+
+Either way, review the draft release and publish it once the builds look right. It stays invisible to everyone else until then.
 
 ## Website
 
