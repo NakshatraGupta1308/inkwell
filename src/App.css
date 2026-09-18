@@ -65,17 +65,11 @@ body {
   color: var(--accent);
 }
 
-.editor {
+.code-editor {
   flex: 1;
-  resize: none;
-  border: none;
-  outline: none;
-  padding: 2rem clamp(1.25rem, 8vw, 12rem);
+  overflow: auto;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 1rem;
   line-height: 1.7;
-  background: var(--paper);
-  color: var(--ink);
 }
 
 .statusbar {

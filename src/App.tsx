@@ -1,51 +1,48 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { open, save } from "@tauri-apps/plugin-dialog";
 import { readTextFile, writeTextFile } from "@tauri-apps/plugin-fs";
+import CodeEditor, { type CodeEditorHandle } from "./CodeEditor";
+import { languageLabel } from "./languages";
 import "./App.css";
 
-const NOTE_FILTERS = [{ name: "Inkwell note", extensions: ["ink", "md"] }];
+const FILE_FILTERS = [
+  { name: "Inkwell note", extensions: ["ink", "md"] },
+  { name: "Code", extensions: ["js", "jsx", "ts", "tsx", "py", "rs", "html", "htm", "css"] },
+  { name: "All files", extensions: ["*"] },
+];
 
 function fileNameFromPath(path: string): string {
   return path.split(/[\\/]/).pop() ?? path;
 }
 
 function App() {
-  const [content, setContent] = useState("");
+  const editorRef = useRef<CodeEditorHandle>(null);
   const [filePath, setFilePath] = useState<string | null>(null);
   const [isDirty, setIsDirty] = useState(false);
-  const [status, setStatus] = useState("New note");
-
-  function handleChange(value: string) {
-    setContent(value);
-    setIsDirty(true);
-  }
 
   function handleNew() {
-    setContent("");
+    editorRef.current?.setValue("", null);
     setFilePath(null);
     setIsDirty(false);
-    setStatus("New note");
   }
 
   async function handleOpen() {
     const selected = await open({
       multiple: false,
-      filters: NOTE_FILTERS,
+      filters: FILE_FILTERS,
     });
     if (!selected || Array.isArray(selected)) return;
 
     const text = await readTextFile(selected);
-    setContent(text);
+    editorRef.current?.setValue(text, selected);
     setFilePath(selected);
     setIsDirty(false);
-    setStatus(fileNameFromPath(selected));
   }
 
   async function handleSave() {
     if (filePath) {
-      await writeTextFile(filePath, content);
+      await writeTextFile(filePath, editorRef.current?.getValue() ?? "");
       setIsDirty(false);
-      setStatus(fileNameFromPath(filePath));
       return;
     }
     await handleSaveAs();
@@ -53,15 +50,14 @@ function App() {
 
   async function handleSaveAs() {
     const target = await save({
-      filters: NOTE_FILTERS,
-      defaultPath: "untitled.ink",
+      filters: FILE_FILTERS,
+      defaultPath: filePath ?? "untitled.ink",
     });
     if (!target) return;
 
-    await writeTextFile(target, content);
+    await writeTextFile(target, editorRef.current?.getValue() ?? "");
     setFilePath(target);
     setIsDirty(false);
-    setStatus(fileNameFromPath(target));
   }
 
   return (
@@ -76,16 +72,11 @@ function App() {
         </div>
       </header>
 
-      <textarea
-        className="editor"
-        value={content}
-        onChange={(e) => handleChange(e.target.value)}
-        placeholder="Start writing..."
-        spellCheck={false}
-      />
+      <CodeEditor ref={editorRef} onDirty={() => setIsDirty(true)} />
 
       <footer className="statusbar">
-        <span>{status}</span>
+        <span>{filePath ? fileNameFromPath(filePath) : "New note"}</span>
+        <span>{languageLabel(filePath)}</span>
         {isDirty && <span className="dirty">unsaved changes</span>}
       </footer>
     </main>
