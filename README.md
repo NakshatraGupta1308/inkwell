@@ -34,3 +34,5 @@ The marketing and download page lives in `website/` as plain HTML and CSS, no bu
 This needs one one-time setting, since a repository does not accept GitHub Actions Pages deployments until it is told to: in the repository's Settings, under Pages, set "Build and deployment" > Source to "GitHub Actions". After that the workflow runs on its own and the site is live at `https://nakshatragupta1308.github.io/inkwell/`.
 
 It can also be deployed to Vercel or Netlify instead, by pointing a project at the `website/` folder; nothing in the site depends on GitHub Pages specifically.
+
+`index.html` links the stylesheet as `styles.css?v=<something>`. Bump that version string whenever `styles.css` changes, since neither GitHub's CDN nor a visitor's browser has any other way to know a same-named file changed, and will otherwise keep serving the old one against the new HTML.
