@@ -1,0 +1,265 @@
+:root {
+  --paper: #faf6ee;
+  --paper-raised: #f3ecdc;
+  --ink: #1f2933;
+  --ink-soft: #5b6472;
+  --accent: #1e3a5f;
+  --border: #ddd4c0;
+  --ui-font: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --mono-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--ui-font);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent);
+}
+
+code {
+  font-family: var(--mono-font);
+  background: var(--paper-raised);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 0;
+}
+
+.nav-brand {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+
+.nav-link:hover {
+  color: var(--accent);
+}
+
+.hero {
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 6rem;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.25;
+  margin: 0 0 1.25rem;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  max-width: 540px;
+  margin: 0 auto 2.25rem;
+}
+
+.button {
+  display: inline-block;
+  font-family: var(--ui-font);
+  font-size: 1rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid var(--accent);
+}
+
+.button-primary {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+.button-primary:hover {
+  opacity: 0.9;
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--accent);
+}
+
+.button-secondary:hover {
+  background: var(--paper-raised);
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-title {
+  font-size: 1.6rem;
+  text-align: center;
+  margin: 0 0 0.5rem;
+}
+
+.section-sub {
+  text-align: center;
+  color: var(--ink-soft);
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.feature h2 {
+  font-size: 1.15rem;
+  margin: 0 0 0.6rem;
+}
+
+.feature p {
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.showcase {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.showcase figure {
+  margin: 0;
+}
+
+.showcase img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.showcase figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.theme-gallery {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.theme-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.theme-card-preview {
+  padding: 0.9rem 1rem;
+  font-family: var(--mono-font);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.theme-card-dots {
+  display: flex;
+  gap: 0.3rem;
+  margin-bottom: 0.6rem;
+}
+
+.theme-card-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.35;
+  display: inline-block;
+}
+
+.theme-card-name {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  background: var(--paper-raised);
+}
+
+.download {
+  padding: 5rem 0 6rem;
+  text-align: center;
+}
+
+.download-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer {
+  padding: 2rem 1.5rem 3rem;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.footer a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}

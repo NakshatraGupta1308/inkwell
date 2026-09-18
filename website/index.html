@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inkwell, notes and code in one quiet place</title>
+    <meta
+      name="description"
+      content="Inkwell is an offline-first desktop app that combines a notes editor and a lightweight code editor, with a real theming system you can make your own."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="nav">
+        <span class="nav-brand">Inkwell</span>
+        <a class="nav-link" href="https://github.com/NakshatraGupta1308/inkwell">GitHub</a>
+      </nav>
+      <div class="hero-content">
+        <h1>Notes and code, in one quiet place.</h1>
+        <p class="hero-sub">
+          A downloadable desktop app for writing notes and reading a bit of code side by side. Offline-first, no
+          account, no telemetry, and nothing sent anywhere you did not put it yourself.
+        </p>
+        <a class="button button-primary" href="https://github.com/NakshatraGupta1308/inkwell/releases/latest">
+          Download for Windows
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="features">
+        <div class="feature">
+          <h2>Write and code together</h2>
+          <p>
+            Notes and code files live in the same workspace, in the same sidebar, in the same session. Keep a note
+            next to the snippet it explains.
+          </p>
+        </div>
+        <div class="feature">
+          <h2>Make it yours</h2>
+          <p>
+            A real theming system, not just light and dark. Colors, fonts, and the syntax highlighting palette are
+            all editable, and themes import and export as plain JSON files you can share.
+          </p>
+        </div>
+        <div class="feature">
+          <h2>Nothing leaves your machine</h2>
+          <p>
+            No account, no cloud sync, no telemetry. Notes are saved as local files you own, with a
+            <code>.ink</code> extension that is unmodified markdown underneath.
+          </p>
+        </div>
+      </section>
+
+      <section class="showcase">
+        <h2 class="section-title">See it working</h2>
+        <div class="showcase-grid">
+          <figure>
+            <img src="assets/screenshot-notes.png" alt="A markdown note open in Inkwell, with a checklist and inline code." />
+            <figcaption>Notes, written in plain markdown.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/screenshot-code.png" alt="A JavaScript file open in Inkwell with syntax highlighting." />
+            <figcaption>Code, with syntax highlighting and line numbers.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="theme-gallery">
+        <h2 class="section-title">A theme for how you work</h2>
+        <p class="section-sub">
+          Ten themes ship with Inkwell. Every color and font shown here is editable, and you can export what you
+          build to share it.
+        </p>
+        <div class="theme-grid">
+          <div class="theme-card">
+            <div class="theme-card-preview" style="background: #faf6ee; color: #1f2933">
+              <div class="theme-card-dots"><span></span><span></span><span></span></div>
+              <div style="color: #8a3b3b">const</div>
+              <div style="color: #1f2933">note <span style="color: #5b6472">=</span> <span style="color: #3c6e47">"draft"</span>;</div>
+              <div style="color: #8a8272">// paper and ink</div>
+            </div>
+            <div class="theme-card-name">Paper</div>
+          </div>
+
+          <div class="theme-card">
+            <div class="theme-card-preview" style="background: #1b1d23; color: #e7e2d6">
+              <div class="theme-card-dots"><span></span><span></span><span></span></div>
+              <div style="color: #e0876b">const</div>
+              <div style="color: #e7e2d6">note <span style="color: #8a8f9c">=</span> <span style="color: #8fbf7f">"draft"</span>;</div>
+              <div style="color: #6b7180">// after dark</div>
+            </div>
+            <div class="theme-card-name">Ink</div>
+          </div>
+
+          <div class="theme-card">
+            <div class="theme-card-preview" style="background: #f4ecd8; color: #4b3621">
+              <div class="theme-card-dots"><span></span><span></span><span></span></div>
+              <div style="color: #96591b">const</div>
+              <div style="color: #4b3621">note <span style="color: #8a7a5c">=</span> <span style="color: #5c7a4a">"draft"</span>;</div>
+              <div style="color: #a08b62">// warm parchment</div>
+            </div>
+            <div class="theme-card-name">Sepia</div>
+          </div>
+
+          <div class="theme-card">
+            <div class="theme-card-preview" style="background: #22262e; color: #d8dee9">
+              <div class="theme-card-dots"><span></span><span></span><span></span></div>
+              <div style="color: #d67f8a">const</div>
+              <div style="color: #d8dee9">note <span style="color: #7d8797">=</span> <span style="color: #8fc19e">"draft"</span>;</div>
+              <div style="color: #6b7686">// cool and quiet</div>
+            </div>
+            <div class="theme-card-name">Slate</div>
+          </div>
+
+          <div class="theme-card">
+            <div class="theme-card-preview" style="background: #1b241d; color: #dbe6dc">
+              <div class="theme-card-dots"><span></span><span></span><span></span></div>
+              <div style="color: #c98a5b">const</div>
+              <div style="color: #dbe6dc">note <span style="color: #7c9080">=</span> <span style="color: #7fae6f">"draft"</span>;</div>
+              <div style="color: #607a68">// deep green</div>
+            </div>
+            <div class="theme-card-name">Forest</div>
+          </div>
+
+          <div class="theme-card">
+            <div class="theme-card-preview" style="background: #fbeef0; color: #4a2530">
+              <div class="theme-card-dots"><span></span><span></span><span></span></div>
+              <div style="color: #a4425c">const</div>
+              <div style="color: #4a2530">note <span style="color: #9c7580">=</span> <span style="color: #6a7a4a">"draft"</span>;</div>
+              <div style="color: #b08a92">// blush light</div>
+            </div>
+            <div class="theme-card-name">Rose</div>
+          </div>
+
+          <div class="theme-card">
+            <div class="theme-card-preview" style="background: #f4f4f2; color: #1c1c1c">
+              <div class="theme-card-dots"><span></span><span></span><span></span></div>
+              <div style="color: #1c1c1c">const</div>
+              <div style="color: #2a2a26">note <span style="color: #6b6b68">=</span> <span style="color: #4a4a46">"draft"</span>;</div>
+              <div style="color: #8a8a86">// grayscale</div>
+            </div>
+            <div class="theme-card-name">Mono</div>
+          </div>
+
+          <div class="theme-card">
+            <div class="theme-card-preview" style="background: #1c1a2b; color: #e4dcf2">
+              <div class="theme-card-dots"><span></span><span></span><span></span></div>
+              <div style="color: #e0857f">const</div>
+              <div style="color: #e4dcf2">note <span style="color: #8c82a6">=</span> <span style="color: #85c0a0">"draft"</span>;</div>
+              <div style="color: #6b6285">// deep indigo</div>
+            </div>
+            <div class="theme-card-name">Nightfall</div>
+          </div>
+
+          <div class="theme-card">
+            <div class="theme-card-preview" style="background: #f2e6d3; color: #3f3121">
+              <div class="theme-card-dots"><span></span><span></span><span></span></div>
+              <div style="color: #b06a2e">const</div>
+              <div style="color: #3f3121">note <span style="color: #8a7a5e">=</span> <span style="color: #55713f">"draft"</span>;</div>
+              <div style="color: #9c8a68">// warm tan</div>
+            </div>
+            <div class="theme-card-name">Sand</div>
+          </div>
+
+          <div class="theme-card">
+            <div class="theme-card-preview" style="background: #16262b; color: #d6e8ea">
+              <div class="theme-card-dots"><span></span><span></span><span></span></div>
+              <div style="color: #e08f6b">const</div>
+              <div style="color: #d6e8ea">note <span style="color: #6f909a">=</span> <span style="color: #6fc2a0">"draft"</span>;</div>
+              <div style="color: #5c7a80">// deep teal</div>
+            </div>
+            <div class="theme-card-name">Ocean</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="download">
+        <h2 class="section-title">Get Inkwell</h2>
+        <p class="section-sub">
+          Windows builds are published on every tagged release. macOS and Linux builds are on the way.
+        </p>
+        <div class="download-actions">
+          <a class="button button-primary" href="https://github.com/NakshatraGupta1308/inkwell/releases/latest">
+            Download for Windows
+          </a>
+          <a class="button button-secondary" href="https://github.com/NakshatraGupta1308/inkwell">
+            View source on GitHub
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="https://github.com/NakshatraGupta1308/inkwell">github.com/NakshatraGupta1308/inkwell</a>
+    </footer>
+  </body>
+</html>
